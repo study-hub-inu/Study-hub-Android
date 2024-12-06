@@ -96,9 +96,12 @@
                 <Button
                     android:id="@+id/btn_next"
                     android:layout_width="match_parent"
-                    android:layout_height="57dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="@dimen/twenty_four"
                     android:layout_marginHorizontal="@dimen/twenty"
-                    android:backgroundTint="@color/O_50"
+                    android:background="@drawable/solid_o_50_corner_6"
+                    android:textColor="@color/syswhite"
+                    android:textSize="16sp"
                     android:text="@string/btn_txt_writing" />
             </LinearLayout>
         </ScrollView>

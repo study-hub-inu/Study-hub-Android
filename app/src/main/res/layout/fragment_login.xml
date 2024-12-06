@@ -109,13 +109,13 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_below="@+id/error_password"
-            android:layout_marginHorizontal="@dimen/side_margin_minus"
+            android:layout_marginHorizontal="@dimen/twenty"
             android:layout_marginTop="@dimen/error_marginTop"
             android:backgroundTint="@color/O_50"
             android:text="@string/btn_login"
             android:textColor="@color/syswhite"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_forgetPassword"

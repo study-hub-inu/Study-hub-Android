@@ -32,5 +32,10 @@
         <item name="android:progressDrawable">@drawable/my_process</item>
     </style>
 
-
+    <style name="CustomScrollBarStyle">
+        <item name="android:scrollbarThumbVertical">@drawable/bg_black_radius_4</item>
+        <item name="android:scrollbarTrackVertical">@drawable/gray_6rounded_background</item>
+    </style>
+    
+    
 </resources>

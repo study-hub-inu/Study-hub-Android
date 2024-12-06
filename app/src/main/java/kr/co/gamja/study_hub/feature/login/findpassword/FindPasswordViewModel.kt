@@ -21,6 +21,7 @@ class FindPasswordViewModel : ViewModel() {
 
     val tag = this.javaClass.simpleName
 
+
     // ***이메일 입력 페이지 사용
 
     // 통신- 유저이메일, 이메일 인증번호 확인 페이지에서도 사용됨
@@ -75,7 +76,7 @@ class FindPasswordViewModel : ViewModel() {
 
 
     // 비밀번호 찾기 이메일로 인증번호 받는 api
-    fun emailForFindPassword() {
+    fun emailForFindPassword( params: CallBackListener) {
         val emailReq = EmailRequest(userEmail.value.toString())
         Log.d(tag, "비밀번호 찾기 이메일인증 $emailReq")
         viewModelScope.launch {
@@ -87,6 +88,7 @@ class FindPasswordViewModel : ViewModel() {
                     Log.d(tag, "비번찾기-이메일 인증번호 보내기 성공")
                     emailVerificationResult.postValue(true)
                     emailVerificationResultTwo.postValue(true)
+                    params.isSuccess(true)
                 } else {
                     emailVerificationResult.postValue(false)
                     emailVerificationResultTwo.postValue(false)
@@ -99,12 +101,13 @@ class FindPasswordViewModel : ViewModel() {
                         val status = errorResponse.status
                         Log.d(tag, status)
                     }
-
+                    params.isSuccess(false)
                 }
             } catch (e: Exception) {
                 Log.e(tag, "비번찾기-이메일 Exception: ${e.message}")
                 emailVerificationResult.postValue(false)
                 emailVerificationResultTwo.postValue(false)
+                params.isSuccess(false)
             }
         }
     }

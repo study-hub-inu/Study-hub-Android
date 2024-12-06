@@ -64,6 +64,7 @@ class EngagedStudyFragment : Fragment() {
         viewModel.setReloadTrigger()
 
         observeData()
+        viewModel.updateEngagedListSize() // 참여한 스터디 개수 업데이트
 
         // 툴바 설정
         val toolbar = binding.engagedStudyToolbar

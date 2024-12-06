@@ -25,6 +25,11 @@ class StudyMainPagingSource(private val studyHubApi: StudyHubApi, private val is
             val response =
                 studyHubApi.getStudyPostAll(isHot, currentPageNumber, params.loadSize, null, false)
             val responseData = response.body()?.postDataByInquiries?.content ?: emptyList()
+            responseData.forEach { item ->
+                Log.e(tag, "PagingSource - postId: ${item.postId}, bookmarked: ${item.bookmarked}")
+            }
+
+
             val nextPageNumber =
                 if (response.body()?.postDataByInquiries?.last == true) {
                     null

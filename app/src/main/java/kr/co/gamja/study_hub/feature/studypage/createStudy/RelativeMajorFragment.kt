@@ -41,6 +41,9 @@ class RelativeMajorFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.fromRelativeMajor.value=true // todo 수정하기에사 학과 변경하고 되돌아갈 때 다시 수정 전 값 불러오는거 방지하기 위함
+
         binding.iconBack.setOnClickListener {
             val navcontroller = findNavController()
             navcontroller.navigateUp() // 뒤로 가기

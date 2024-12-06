@@ -84,6 +84,7 @@
                 android:layout_marginBottom="@dimen/twenty"
                 android:background="@drawable/btn_ok_stroke_o_50"
                 android:text="@string/btn_join"
+                android:textStyle="bold"
                 android:textColor="@color/O_50"
                 android:textSize="14sp" />
         </RelativeLayout>

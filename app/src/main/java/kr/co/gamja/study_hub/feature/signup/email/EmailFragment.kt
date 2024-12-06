@@ -117,7 +117,7 @@ class EmailFragment : Fragment() {
         }
         // 인증번호 재전송
         binding.btnResend.setOnClickListener {
-
+            binding.errorEmail.isVisible=false
             sendEmail(true)
 
             hideKeyboardForResend()
@@ -200,12 +200,16 @@ class EmailFragment : Fragment() {
         }
     }
     private fun sendEmail(customDialogNeed:Boolean){
+
+        binding.mainHomeProgressBar.isVisible=true
+
         viewModel.checkEmail(object : CallBackListener {
             override fun isSuccess(result: Boolean) {
                 if (result) {
                     Log.e("이메일중복x","")
                     viewModel.emailSend(object : CallBackListener {
                         override fun isSuccess(result: Boolean) {
+                            binding.mainHomeProgressBar.isVisible=false
                             if (result) {
                                 Log.e("이메일인증코드 보냄","")
                                 // 이메일 인증 보냈을 때

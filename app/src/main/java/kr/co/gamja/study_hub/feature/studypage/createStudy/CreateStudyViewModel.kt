@@ -21,6 +21,9 @@ class CreateStudyViewModel : ViewModel() {
 
     val function = Functions()
 
+    // 수정 시 학과 선택 후 온건지 확인=> 이 경우엔 수정 전 값을 불러올 이유가 없음
+    val fromRelativeMajor = MutableLiveData<Boolean>(false) // todo false가 아직 학과 수정하기 안간거
+
     // 화면 표시 여부 Boolean - 학과 chip
     private val _isRelativeMajor = MutableLiveData<Boolean>(false)
     val isRelativeMajor: LiveData<Boolean> get() = _isRelativeMajor
@@ -35,6 +38,7 @@ class CreateStudyViewModel : ViewModel() {
 
     fun setPostRelativeMajor(new: String) {
         _postRelativeMajor.value = new
+        Log.d("CreateStudyViewModel", "한국어 전공 setPostRelativeMajor 함수안  ${_postRelativeMajor.value}")
     }
 
     // 성별
@@ -286,6 +290,8 @@ class CreateStudyViewModel : ViewModel() {
         persons.value = ""
         initMeet(false)
         studyTitle.value = ""
+        setErrorChatLink(false) // 챗 에러 메시지 초기화 todo
+        fromRelativeMajor.value=false // todo 확인 필요
     }
 
     fun setUserMajor(item: String) {
@@ -360,14 +366,22 @@ class CreateStudyViewModel : ViewModel() {
 
     // 스터디 생성 api
     fun createStudy(params: CallBackIntegerListener) {
+
+        var whatFeeResult = ""
+        var howMuchFeeResult= 0
+        if(selectedFee.value == true){
+            whatFeeResult=whatFee.value.toString()
+            howMuchFeeResult= howMuch.value.toString().toInt()
+        }
+
         val req = CreateStudyRequest(
             urlEditText.value.toString(),
             false,
             studyContent.value.toString(),
             gender.value.toString(),
             relativeMajor.value.toString(),
-            howMuch.value.toString().toInt(),
-            whatFee.value.toString(),
+            howMuchFeeResult,
+            whatFeeResult,
             editEndDay.value.toString(),
             persons.value.toString().toInt(),
             editStartDay.value.toString(),
@@ -415,8 +429,10 @@ class CreateStudyViewModel : ViewModel() {
                         "NULL" -> setRegardlessOfGender(true)
                     }
                     val koreanMajor = function.convertToKoreanMajor(result.major)
-                    setPostRelativeMajor(koreanMajor) // 화면 chip표시용
-
+                    Log.d("CreateStudyViewModel", "한국어 전공  $koreanMajor")
+                    setPostRelativeMajor(koreanMajor) // 화면 chip표시용 //todo 나타나는지 확인하기
+                    setIsRelativeMajor(true) // 칩 화면 표시 visible 필요
+                    setRelativeMajor(result.major)// 서버에 전송 시 (전공 명 영어로 변환해야함)
                     if (result.penalty == 0) {
                         setSelectedFee(false)
                         whatFee.value = ""
@@ -443,13 +459,19 @@ class CreateStudyViewModel : ViewModel() {
 
     // 스터디 수정 api
     fun correctStudy(postId: Int, prams: CallBackIntegerListener) {
+        var whatFeeResult = ""
+        var howMuchFeeResult= 0
+        if(selectedFee.value == true){
+            whatFeeResult=whatFee.value.toString()
+            howMuchFeeResult= howMuch.value.toString().toInt()
+        }
         val correctStudyRequest = CorrectStudyRequest(
             urlEditText.value.toString(),
             studyContent.value.toString(),
             gender.value.toString(),
             relativeMajor.value.toString(),
-            howMuch.value.toString().toInt(),
-            whatFee.value.toString(),
+            howMuchFeeResult,
+            whatFeeResult,
             postId,
             editEndDay.value.toString(),
             persons.value.toString().toInt(),

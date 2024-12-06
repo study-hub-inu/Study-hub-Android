@@ -93,6 +93,15 @@
             android:textColorHint="@color/BG_70"
             android:textSize="14sp" />
 
+
+        <ProgressBar
+            android:id="@+id/mainHomeProgressBar"
+            style="@style/CustomProgressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+
     </RelativeLayout>
 
 

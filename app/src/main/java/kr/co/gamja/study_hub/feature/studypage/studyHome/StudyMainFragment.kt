@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -93,6 +94,7 @@ class StudyMainFragment : Fragment() {
         viewModel.isUserOrNotUser(object : CallBackListener {
             override fun isSuccess(result: Boolean) {
                 Log.e(msgTag,"1"+viewModel.isUserLogin.value!!.toString())
+                observeData()
             }
         })
 
@@ -117,12 +119,13 @@ class StudyMainFragment : Fragment() {
                 adapter.isUserLogin=it
                 Log.e(msgTag,"2"+viewModel.isUserLogin.value!!.toString())
             }
+//            viewModel.setReloadTrigger()
         }
         binding.recyclerStudyMain.adapter = adapter
         binding.recyclerStudyMain.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.setReloadTrigger()
-        observeData()
+//        viewModel.setReloadTrigger()
+//        observeData()
 
         // 툴바 설정
         val toolbar = binding.studyMainToolbar
@@ -159,9 +162,13 @@ class StudyMainFragment : Fragment() {
                 setButtonOption(false) // 버튼 색, 글자색 변경
                 viewModel.setIsHot(false)
                 viewModel.setReloadTrigger()
+                binding.mainHomeProgressBar.isVisible = true
+
                 observeData()
                 allBtnEnable = true
                 popularBtnEnable = false
+                // todo 프로그래스 바
+
             }
         }
 
@@ -171,9 +178,11 @@ class StudyMainFragment : Fragment() {
                 setButtonOption(true) // 버튼 색, 글자색 변경
                 viewModel.setIsHot(true)
                 viewModel.setReloadTrigger()
+                binding.mainHomeProgressBar.isVisible = true
                 observeData()
                 allBtnEnable = false
                 popularBtnEnable = true
+                // todo 프로그래스 바
             }
         }
 
@@ -206,14 +215,8 @@ class StudyMainFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
+// todo
 
-        lifecycleScope.launch {
-            adapter.loadStateFlow.collectLatest { loadState ->
-                binding.mainHomeProgressBar.isVisible = loadState.refresh is LoadState.Loading
-                binding.iconBookmark.isEnabled = !binding.mainHomeProgressBar.isVisible // 로딩바가 끝나야 북마크버튼 클릭가능
-                binding.btnFlaot.isEnabled=!binding.mainHomeProgressBar.isVisible // 로딩바가 끝나야 스터디 생성가능
-            }
-        }
     }
 
 
@@ -243,6 +246,16 @@ class StudyMainFragment : Fragment() {
 
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
+
+
+            launch {
+                adapter.loadStateFlow.collectLatest { loadState ->
+                    binding.mainHomeProgressBar.isVisible = loadState.refresh is LoadState.Loading
+                    binding.iconBookmark.isEnabled = !binding.mainHomeProgressBar.isVisible // 로딩바가 끝나야 북마크버튼 클릭가능
+                    binding.btnFlaot.isEnabled=!binding.mainHomeProgressBar.isVisible // 로딩바가 끝나야 스터디 생성가능
+                }
+            }
+
             viewModel.studyMainFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
 

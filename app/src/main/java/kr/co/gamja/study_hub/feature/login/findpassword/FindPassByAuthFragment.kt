@@ -2,6 +2,7 @@ package kr.co.gamja.study_hub.feature.login.findpassword
 
 import android.content.Context
 import android.os.Bundle
+import android.telecom.Call
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import kr.co.gamja.study_hub.R
 import kr.co.gamja.study_hub.data.repository.CallBackListener
 import kr.co.gamja.study_hub.databinding.FragmentFindPassByAuthBinding
 import kr.co.gamja.study_hub.global.CustomSnackBar
+import javax.security.auth.callback.Callback
 
 // 로그인이나 마이페이지 비번변경 페이지에서 비번찾기 눌렀을 때
 class FindPassByAuthFragment : Fragment() {
@@ -94,7 +96,18 @@ class FindPassByAuthFragment : Fragment() {
         // 재전송 버튼 누를 시
         binding.btnResend.setOnClickListener {
             hideKeyboardForResend() // 자판내리기
-            viewModel.emailForFindPassword() // 이메일 인증
+            viewModel.emailForFindPassword(object  : CallBackListener{
+
+                override fun isSuccess(result: Boolean) {
+                    if(!result){
+                        CustomSnackBar.make(
+                            binding.layoutRelative,
+                            getString(R.string.error_noRegisteredEmail),
+                            null, true, R.drawable.icon_warning_m_orange_8_12
+                        ).show()
+                    }
+                }
+            }) // 이메일 인증
         }
 
         viewModel.userAuth.observe(viewLifecycleOwner) {

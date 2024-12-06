@@ -89,13 +89,14 @@
                 android:text="@string/btn_allDelete"
                 android:textColor="@color/BG_70"
                 android:textSize="14sp"
-                android:visibility="visible"
                 android:textAlignment="center"
                 android:fontFamily="@font/pretendard_medium"
                 android:textFontWeight="600"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="@{viewModel.listSize==0 ?  View.INVISIBLE : View.VISIBLE}"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView

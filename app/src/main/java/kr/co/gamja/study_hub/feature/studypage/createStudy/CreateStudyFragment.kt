@@ -1,12 +1,19 @@
 package kr.co.gamja.study_hub.feature.studypage.createStudy
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
@@ -14,6 +21,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import kr.co.gamja.study_hub.R
 import kr.co.gamja.study_hub.data.repository.CallBackIntegerListener
@@ -29,6 +37,7 @@ class CreateStudyFragment : Fragment() {
     private val viewModel: CreateStudyViewModel by activityViewModels()
     var newStartDate = StartDate(null, null) // 시작 날짜 < 끝 날짜
     var isCorrectStudyRequest: Boolean = false // true - 스터디 수정페이지에서 넘어옴, false - 스터디 생성
+
     var currentPostId: Int = -1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +53,7 @@ class CreateStudyFragment : Fragment() {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
@@ -68,6 +78,48 @@ class CreateStudyFragment : Fragment() {
         binding.iconBack.setOnClickListener {
             isPressedBackBtn() // 다이어로그 띄우게
         }
+
+        // 스터디 모집 설명 작성 시 EditText 스크롤 활성화
+        binding.editAboutStudy.setOnTouchListener{
+            v,event -> v.parent.requestDisallowInterceptTouchEvent(true)
+            if(event.action == MotionEvent.ACTION_UP){
+                v.parent.requestDisallowInterceptTouchEvent(false)
+
+            }
+            false
+        }
+
+        // 스터디 모집 설명 작성 시 EditText 연속된 세번 공백 제거
+        binding.editAboutStudy.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(p0 !=null){
+                    val filterText = p0.toString().replace("\\s{5,}".toRegex(), " ")
+                    val watcher =this
+                    if(filterText != p0.toString()){
+                        binding.editAboutStudy.apply {
+                            removeTextChangedListener(watcher)
+                            setText(filterText)
+                            setSelection(filterText.length)
+                            addTextChangedListener(watcher)
+                        }
+
+                    }
+
+                }
+            }
+
+
+        })
+
+
 
         // TODO("번들로 받을지?")
         binding.btnSelectMajor.setOnClickListener {
@@ -136,6 +188,9 @@ class CreateStudyFragment : Fragment() {
         }
         // 벌금 여부 라디오 그룹
         binding.radioGroup.setOnCheckedChangeListener { _, p1 ->
+
+            val selectedradioBtn = binding.radioGroup.findViewById<RadioButton>(p1)
+            selectedradioBtn?.setTextColor(ContextCompat.getColor(binding.root.context,R.color.sysblack1))
             if (p1 == R.id.radio_yes) {
                 viewModel.setSelectedFee(true)
             } else viewModel.setSelectedFee(false)
@@ -146,6 +201,7 @@ class CreateStudyFragment : Fragment() {
                 binding.radioGroup.check(R.id.radio_yes)
             } else {
                 binding.radioGroup.check(R.id.radio_no)
+
             }
             viewModel.setButtonEnable()
         }
@@ -155,12 +211,21 @@ class CreateStudyFragment : Fragment() {
             urlEditText.observe(viewLifecycleOwner) {text ->
                 val CHATLINK = "^https://open\\.kakao\\.com/o/[A-Za-z\\d]+\$".toRegex()
 
-                if (CHATLINK.matches(text.toString())) {
+                if(urlEditText.value.toString().isNotEmpty()){
+
+                    if (CHATLINK.matches(text.toString())) {
+                        viewModel.setButtonEnable()
+                        viewModel.setErrorChatLink(false)
+                    } else {
+                        viewModel.setButtonEnable()
+                        viewModel.setErrorChatLink(true)
+                    }
+                }else{
                     viewModel.setButtonEnable()
                     viewModel.setErrorChatLink(false)
-                } else {
-                    viewModel.setErrorChatLink(true)
                 }
+
+
 
             }
             studyTitle.observe(viewLifecycleOwner) {
@@ -171,6 +236,7 @@ class CreateStudyFragment : Fragment() {
             }
             relativeMajor.observe(viewLifecycleOwner) {
                 viewModel.setButtonEnable()
+//                Log.e("CreateStudyFragment", "relativeMajor 옵저버(서버에 보낼 때)${relativeMajor.value}")
             }
             persons.observe(viewLifecycleOwner) {
                 if (!viewModel.persons.value.isNullOrEmpty())
@@ -220,11 +286,12 @@ class CreateStudyFragment : Fragment() {
 
             if (isCorrectStudyRequest) { // 스터디 수정 api 호출
                 viewModel.correctStudy(currentPostId, object : CallBackIntegerListener {
-                    override fun isSuccess(result: Int) {
+                    override fun isSuccess(result: Int) { // todo 수정 후 초기화 추가
                         CustomSnackBar.make(
                             binding.layoutLinear,
                             getString(R.string.alarm_completeAlter), bottomView
                         ).show()
+                        viewModel.setInit() // 초기화
                         val action =
                             CreateStudyFragmentDirections.actionGlobalStudyContentFragment(true,result)
                         findNavController().navigate(action, navOptions) // 백스택에서 생성 페이지 제거
@@ -267,11 +334,14 @@ class CreateStudyFragment : Fragment() {
             isCorrectStudyRequest = receiveBundle.getBoolean("isCorrectStudy")
             Log.d("createStudyFragment's 스터디 수정인지", isCorrectStudyRequest.toString())
         } else Log.e(tag, "createStudyFragment's receiveBundle is Null in goToCorrectStudy()")
-        if (isCorrectStudyRequest) {
-            currentPostId = receiveBundle?.getInt("postId") ?: 0
+        if (isCorrectStudyRequest && viewModel.fromRelativeMajor.value == false) { // 처음 수정하기 페이지 진입했을 때(학과 수정 후 온거 x)
+            currentPostId = receiveBundle?.getInt("postId") ?: 0 // 스터디 아이디 가져오기
             Log.d(tag, " value: $isCorrectStudyRequest, postId: $currentPostId")
             binding.txtCreateStudy.text = getString(R.string.txt_alterStudy)
-            viewModel.getMyCreatedStudy(currentPostId)
+            viewModel.getMyCreatedStudy(currentPostId) // 수정하기 페이지 들어왔을 때 기존 정보 불러오기
+        }else if(isCorrectStudyRequest && viewModel.fromRelativeMajor.value == true){ // 수정하기 -> 학과 수정 -> 수정하기 경우
+           // 수정하기 -> 학과 수정하고 온 경우
+            binding.txtCreateStudy.text = getString(R.string.txt_alterStudy)
         }
     }
 

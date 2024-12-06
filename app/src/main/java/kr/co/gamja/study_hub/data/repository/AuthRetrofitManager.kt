@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 // 인가 액세스토큰 보낼 때사용
 object AuthRetrofitManager {
 
-    private const val BASE_URL = "https://study-hub.site"
+    private const val BASE_URL = "https://studyhub.shop"
     val gson = GsonBuilder().setLenient().create()
 
     // 레트로핏 생성

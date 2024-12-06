@@ -1,6 +1,8 @@
 package kr.co.gamja.study_hub.feature.mypage
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -193,11 +195,16 @@ class MypageMainFragment : Fragment() {
         }
         // 개인정보이용약관
         binding.btnUerTerms.setOnClickListener {
-            findNavController().navigate(R.id.action_global_personalInfoTermFragment, null)
+//            findNavController().navigate(R.id.action_global_personalInfoTermFragment, null)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://past-kileskus-637.notion.site/c9d9427a171246cf8810ed009e5bd373?pvs=4"))
+            startActivity(intent)
+
         }
         // 이용약관
         binding.btnTerms.setOnClickListener {
-            findNavController().navigate(R.id.action_global_serviceUseTermFragment, null)
+//            findNavController().navigate(R.id.action_global_serviceUseTermFragment, null)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://past-kileskus-637.notion.site/e0729e1f57ef4ea2a2d042eaf18f21d5?pvs=4"))
+            startActivity(intent)
         }
     }
 

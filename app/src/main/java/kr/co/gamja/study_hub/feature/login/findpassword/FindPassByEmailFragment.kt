@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -134,7 +135,21 @@ class FindPassByEmailFragment : Fragment() {
         // 이메일 확인 버튼 클릭 시
         binding.btnComplete.setOnClickListener {
             hideKeyboardForResend() // 자판내리기
-            viewModel.emailForFindPassword() // 이메일 인증
+            binding.mainHomeProgressBar.isVisible = true
+            viewModel.emailForFindPassword(object  : CallBackListener{
+
+                override fun isSuccess(result: Boolean) {
+                    if(!result){
+
+                        CustomSnackBar.make(
+                            binding.layoutRelative,
+                            getString(R.string.error_noRegisteredEmail),
+                            null, true, R.drawable.icon_warning_m_orange_8_12
+                        ).show()
+                    }
+                    binding.mainHomeProgressBar.isVisible = false
+                }
+            }) // 이메일 인증
         }
     }
 
@@ -145,5 +160,11 @@ class FindPassByEmailFragment : Fragment() {
         if (currentFocusView != null) {
             inputMethodManager.hideSoftInputFromWindow(currentFocusView.windowToken, 0)
         }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.initUserEmail()
     }
 }

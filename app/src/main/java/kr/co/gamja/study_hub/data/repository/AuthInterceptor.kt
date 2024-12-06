@@ -27,7 +27,7 @@ class AuthInterceptor() : Interceptor {
         val accessToken = accessTokenDeferred.await()
         val refreshToken = refreshTokenDeferred.await()
 
-        Log.d(tag, "데이터스토어에서 불러온 토큰 두개 " + accessToken + "//////" + refreshToken)
+//        Log.d(tag, "데이터스토어에서 불러온 토큰 두개 " + accessToken + "//////" + refreshToken)
 
         val request =
             chain.request().newBuilder().addHeader("Authorization", accessToken).build()
@@ -51,13 +51,13 @@ class AuthInterceptor() : Interceptor {
                 RetrofitManager.api.accessTokenIssued(AccessTokenRequest(refreshToken))
 
             if (getNewToken.code() == 200) {
-                Log.d(tag, "회원조회 인터셉트 뉴토큰코드 " + getNewToken.code())
+                Log.e(tag, "회원조회 인터셉트 뉴토큰코드 " + getNewToken.code())
                 val dataStoreInstance = App.getInstance().getDataStore()
 
                 dataStoreInstance.clearDataStore()   // 초기화
                 dataStoreInstance.setAccessToken(getNewToken.body()?.accessToken.toString())
                 dataStoreInstance.setRefreshToken(getNewToken.body()?.refreshToken.toString())
-                Log.d(tag, "회원조회 갱신 뉴토큰 " + accessToken + "////RefreshToken:////" + refreshToken)
+//                Log.d(tag, "회원조회 갱신 뉴토큰 " + accessToken + "////RefreshToken:////" + refreshToken)
 
                 val newAuthRequest =
                     chain.request().newBuilder()

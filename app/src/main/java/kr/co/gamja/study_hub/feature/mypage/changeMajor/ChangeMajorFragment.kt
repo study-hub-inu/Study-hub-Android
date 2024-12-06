@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -68,9 +69,17 @@ class ChangeMajorFragment : Fragment() {
     private fun selectMajor() {
         val editTxt_major = binding.autoMajor
         val array_major: Array<String> = resources.getStringArray(R.array.array_majors)
-        val adapter_array =
-            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, array_major)
-        editTxt_major.setAdapter(adapter_array)
+        val adapter_array = object :
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, array_major){
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                val color = requireContext().getColor(R.color.sysblack1) // 리스트 글자 색 변경
+                view.setTextColor(color)
+                return view
+            }
+
+            }
+        editTxt_major.setAdapter(adapter_array) // todo 글자 색 변경
         // 드랍다운 배경셋팅
         binding.autoMajor.let {
             it.setDropDownBackgroundResource(R.drawable.background_bg_20_round_10)

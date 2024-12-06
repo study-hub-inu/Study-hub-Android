@@ -260,7 +260,7 @@ class ContentFragment : Fragment() {
                                     binding.btnNext,
                                     true,
                                     R.drawable.icon_check_green
-                                ).show()
+                                ).show(1000)
                                 // 키보드 내리기
                                 hideKeyboardForResend()
                                 // editText에 입력된 글 지우기

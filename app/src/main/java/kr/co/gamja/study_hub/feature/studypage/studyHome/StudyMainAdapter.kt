@@ -111,6 +111,10 @@ class StudyMainAdapter(private val context: Context) :
                     .append(".")
                     .append(it.createdDate[2])
 
+                Log.e("StudyMain어댑터페이지", "북마크 여부"+it.bookmarked)
+                // 북마크인지 아닌지 표시
+                binding.isBookmark = it.bookmarked
+
                 binding.createdDate.text = sb.toString()
                 Glide.with(context)
                     .load(it.userData.imageUrl)
@@ -121,8 +125,6 @@ class StudyMainAdapter(private val context: Context) :
                         ).circleCrop()
                     ).into(binding.iconProfile)
 
-                // 북마크인지 아닌지 표시
-                binding.isBookmark = it.bookmarked
             }
             //북마크 추가
             binding.btnBookmark.setOnClickListener {

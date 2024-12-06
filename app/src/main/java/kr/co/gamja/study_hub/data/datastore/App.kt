@@ -14,11 +14,16 @@ class App:Application() {
 
     override fun onCreate() {
         super.onCreate()
-//        val dexOutputDir: File =codeCacheDir
-//        dexOutputDir.setReadOnly()
 
         app=this
         datastore=DataStoreModule(this)
+
+        val dexOutputDir: File =codeCacheDir
+        dexOutputDir.listFiles()?.forEach {
+            file->file.setReadOnly()
+
+        }
+
     }
     fun getDataStore():DataStoreModule=datastore
 }

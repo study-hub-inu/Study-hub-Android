@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitManager {
 
-    private const val BASE_URL = "https://study-hub.site"
+    private const val BASE_URL = "https://studyhub.shop"
     val gson =GsonBuilder().setLenient().create()
 
     // 레트로핏 생성 

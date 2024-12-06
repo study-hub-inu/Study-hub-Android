@@ -48,4 +48,22 @@ class EngagedStudyViewModel(studyHubApi: StudyHubApi) : ViewModel() {
             EngagedStudyPagingSource(studyHubApi)
         }.flow.cachedIn(viewModelScope)
     }
+
+
+
+    // 참여한 스터디 개수 세기
+    fun updateEngagedListSize() {
+        viewModelScope.launch {
+            val response = AuthRetrofitManager.api.participatingMyStudy(0, 10)
+            try {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    _listSize.value = result?.totalCount
+                    Log.d(" 사용자가 참여한 스터디 개수", _listSize.toString())
+                }
+            } catch (e: Exception) {
+                Log.e(tag, "사용자가 참여한 스터디api에서 개수 조회 실패 code" + response.code().toString())
+            }
+        }
+    }
 }
