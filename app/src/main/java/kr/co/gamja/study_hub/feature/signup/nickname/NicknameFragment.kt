@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -19,7 +20,9 @@ import androidx.navigation.fragment.findNavController
 import kr.co.gamja.study_hub.R
 import kr.co.gamja.study_hub.databinding.FragmentNicknameBinding
 import kr.co.gamja.study_hub.feature.signup.major.User
+import kr.co.gamja.study_hub.global.CustomDialog
 import kr.co.gamja.study_hub.global.ExtensionFragment.Companion.hideKeyboard
+import kr.co.gamja.study_hub.global.OnDialogClickListener
 
 
 class NicknameFragment : Fragment() {
@@ -72,9 +75,17 @@ class NicknameFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
 
         binding.iconBack.setOnClickListener {
-            val navcontroller = findNavController()
-            navcontroller.navigateUp() // 뒤로 가기
+            isPressedBackBtn()
         }
+        val pressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                isPressedBackBtn()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, pressedCallBack)
+
+
         binding.txtPageNumber.text = getString(R.string.txt_pagenumber, 4)
 
 
@@ -104,7 +115,7 @@ class NicknameFragment : Fragment() {
         // 닉네임 중복 확인 후 다음 페이지로 이동
         viewModel.nicknameError.observe(viewLifecycleOwner){
 
-            if(viewModel.gender.value?.isNotEmpty() == true && it==false){
+            if(viewModel.gender.value?.isNullOrBlank() ==false && it==false){
                 viewModel.setEnableNextBtn(true)
             }else{
                 viewModel.setEnableNextBtn(false)
@@ -113,7 +124,7 @@ class NicknameFragment : Fragment() {
         }
 
         viewModel.gender.observe(viewLifecycleOwner){newGender->
-            if(newGender.isNotEmpty() && viewModel.nicknameError.value==false){
+            if(!newGender.isNullOrBlank() && viewModel.nicknameError.value==false){
                 viewModel.setEnableNextBtn(true)
             }else{
                 viewModel.setEnableNextBtn(false)
@@ -205,6 +216,26 @@ class NicknameFragment : Fragment() {
             if (ch == ' ') result = true
         }
         return result
+    }
+
+
+    fun isPressedBackBtn() {
+        val head: String =requireContext().resources.getString(R.string.q_alterSignUp)
+        val sub: String =requireContext().resources.getString(R.string.q_alterSignUpSub)
+        val no = requireContext().resources.getString(R.string.btn_no)
+        val yes = requireContext().resources.getString(R.string.btn_yes)
+        val dialog = CustomDialog(requireContext() ,head,sub, no, yes)
+        dialog.showDialog()
+        dialog.setOnClickListener(object : OnDialogClickListener {
+            override fun onclickResult() {
+
+                viewModel.updateGender("")
+                viewModel.updateNickname("")
+
+                findNavController().navigate(R.id.action_global_loginFragment)
+            }
+        })
+
     }
 
 }

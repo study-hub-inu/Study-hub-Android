@@ -50,7 +50,7 @@
                         android:gravity="center"
                         android:text="@string/txt_myInfo"
                         android:textColor="@color/syswhite"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -84,7 +84,7 @@
                         android:background="#00000000"
                         android:text="@string/btn_delete"
                         android:textColor="@color/BG_70"
-                        android:textSize="14sp" />
+                        android:textSize="14dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_modifyImg"
@@ -94,7 +94,7 @@
                         android:text="@string/btn_modify"
 
                         android:textColor="@color/O_50"
-                        android:textSize="14sp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <TextView
@@ -108,7 +108,7 @@
                     android:layout_marginHorizontal="@dimen/twenty"
                     android:text="@string/txt_word_nickname"
                     android:textColor="@color/sysblack1"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -130,7 +130,7 @@
                         android:background="#00000000"
                         android:text="@{viewModel.nicknameData}"
                         android:textColor="@color/BG_80"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:gravity="end|center_vertical"
                         android:textAllCaps="false"
                         tools:text="테스트 계정" />
@@ -153,7 +153,7 @@
                     android:text="@string/txt_word_major"
                     android:gravity="center"
                     android:textColor="@color/sysblack1"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -174,7 +174,7 @@
                         android:background="#00000000"
                         android:text="@{viewModel.majorData}"
                         android:textColor="@color/BG_80"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:gravity="end|center_vertical"
                         tools:text="경영학부" />
 
@@ -195,7 +195,7 @@
                     android:layout_alignTop="@id/ly_password"
                     android:text="@string/txt_word_password"
                     android:textColor="@color/sysblack1"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -233,7 +233,7 @@
                     android:layout_marginHorizontal="@dimen/twenty"
                     android:text="@string/txt_gender"
                     android:textColor="@color/sysblack1"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -246,7 +246,7 @@
                     android:layout_marginHorizontal="@dimen/twenty"
                     android:text="@{viewModel.genderData}"
                     android:textColor="@color/BG_80"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     tools:text="여자" />
 
                 <TextView
@@ -259,7 +259,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/txt_word_email"
                     android:textColor="@color/sysblack1"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -272,7 +272,7 @@
                     android:layout_marginHorizontal="@dimen/twenty"
                     android:text="@{viewModel.emailData}"
                     android:textColor="@color/BG_80"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     tools:text="abcd@inu.ac.kr" />
 
                 <View
@@ -294,7 +294,7 @@
                     android:text="@string/btn_logout"
                     android:textAlignment="textStart"
                     android:textColor="@color/BG_90"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_leave"
@@ -306,7 +306,7 @@
                     android:text="@string/btn_leave"
                     android:textAlignment="textStart"
                     android:textColor="@color/BG_90"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
 
                 <ProgressBar
                     android:id="@+id/uploadProgressBar"

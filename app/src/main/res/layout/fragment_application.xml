@@ -39,7 +39,7 @@
                    android:gravity="center"
                    android:text="@string/apply"
                    android:textColor="@color/syswhite"
-                   android:textSize="18sp"
+                   android:textSize="18dp"
                    android:textStyle="bold" />
            </RelativeLayout>
        </androidx.appcompat.widget.Toolbar>
@@ -54,7 +54,7 @@
            android:text="@string/apply_sub"
            android:layout_below="@+id/application_toolbar"
            android:textColor="@color/sysblack1"
-           android:textSize="16sp" />
+           android:textSize="16dp" />
 
        <EditText
            android:layout_below="@+id/txt_applySub"
@@ -75,7 +75,7 @@
            android:text="@={viewModel.applyEditText}"
            android:textColor="@color/sysblack1"
            android:textColorHint="@color/BG_70"
-           android:textSize="14sp" />
+           android:textSize="14dp" />
        <TextView
            android:layout_below="@+id/edit_applyHint"
            android:id="@+id/txt_limitOfNickname"
@@ -111,7 +111,7 @@
            android:text="@string/btn_complete"
            android:textColor="@color/syswhite"
            android:layout_alignParentBottom="true"
-           android:textSize="16sp" />
+           android:textSize="16dp" />
    </RelativeLayout>
 
 </layout>

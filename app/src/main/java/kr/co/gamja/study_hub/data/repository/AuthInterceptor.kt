@@ -30,7 +30,7 @@ class AuthInterceptor() : Interceptor {
 //        Log.d(tag, "데이터스토어에서 불러온 토큰 두개 " + accessToken + "//////" + refreshToken)
 
         val request =
-            chain.request().newBuilder().addHeader("Authorization", accessToken).build()
+            chain.request().newBuilder().addHeader("Authorization", "Bearer $accessToken").build()
         val response = chain.proceed(request)
 
         Log.d(tag, "회원조회 인터셉트 시작")
@@ -38,7 +38,7 @@ class AuthInterceptor() : Interceptor {
         if (response.code != 200 && response.code != 201 && response.code != 204) {
             Log.e(tag, "회원조회 인터셉트 기존토큰 유효x " + response.code)
 
-            val responseBodyString = response.body?.string()
+            val responseBodyString = response.peekBody(Long.MAX_VALUE).string()
             val errorResponse: ErrorResponse? = responseBodyString?.let {
                 val gson = Gson()
                 gson.fromJson(it, ErrorResponse::class.java)
@@ -50,7 +50,7 @@ class AuthInterceptor() : Interceptor {
             val getNewToken =
                 RetrofitManager.api.accessTokenIssued(AccessTokenRequest(refreshToken))
 
-            if (getNewToken.code() == 200) {
+            if (getNewToken.code() == 200 || getNewToken.code() == 201 || getNewToken.code() == 204) {
                 Log.e(tag, "회원조회 인터셉트 뉴토큰코드 " + getNewToken.code())
                 val dataStoreInstance = App.getInstance().getDataStore()
 
@@ -63,11 +63,11 @@ class AuthInterceptor() : Interceptor {
                     chain.request().newBuilder()
                         .addHeader(
                             "Authorization",
-                            getNewToken.body()?.accessToken.toString()
+                            "Bearer ${getNewToken.body()?.accessToken.toString()}"
                         )
                         .build()
                 Log.d(tag, "회원조회 인터셉트 뉴토큰으로 ")
-                response.close()
+//                response.close()
                 return@runBlocking chain.proceed(newAuthRequest)
             } else {
                 Log.e(tag, "회원조회 인터셉트 리프레쉬유효x 코드 : " + getNewToken.code())

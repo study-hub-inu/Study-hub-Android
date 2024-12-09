@@ -42,7 +42,7 @@
                     android:gravity="center"
                     android:text="@string/word_registration"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -55,7 +55,7 @@
             android:layout_marginHorizontal="@dimen/twenty"
             android:layout_marginTop="@dimen/login_top_margin"
             android:textColor="@color/G_60"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             tools:text="1/5" />
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="@dimen/twenty_four"
             android:text="@string/head_agreement"
             android:textColor="@color/syswhite"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_marginBottom="@dimen/login_top_margin"
             android:text="@string/sub_agreement"
             android:textColor="@color/G_40"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
 
         <LinearLayout
             android:id="@+id/layout_allAgree"
@@ -110,7 +110,7 @@
                 android:paddingVertical="12dp"
                 android:text="@string/allAgree"
                 android:textColor="@color/syswhite"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -140,7 +140,7 @@
                 android:paddingVertical="12dp"
                 android:text="@string/service_consent"
                 android:textColor="@color/syswhite"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/arrow_service"
@@ -177,7 +177,7 @@
                 android:paddingVertical="12dp"
                 android:text="@string/personalInfo_consent"
                 android:textColor="@color/syswhite"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/arrow_personalInfo"
@@ -201,7 +201,7 @@
             android:enabled="@{viewModel.allConsent?true:false}"
             android:text="@string/btn_nextpage"
             android:textColor="@{viewModel.allConsent?@color/syswhite:@color/W_Deactivation}"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
     </RelativeLayout>
 
 </layout>

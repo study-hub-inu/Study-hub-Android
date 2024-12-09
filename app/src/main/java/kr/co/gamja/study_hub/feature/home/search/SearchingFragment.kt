@@ -27,7 +27,7 @@ import kr.co.gamja.study_hub.global.ExtensionFragment.Companion.hideKeyboard
 import kr.co.gamja.study_hub.global.RcvDecoration
 
 class SearchingFragment : Fragment() {
-
+    // 첫번째 페이지
     private lateinit var binding : FragmentSearchingBinding
     private val viewModel : RecommendViewModel by viewModels()
     private lateinit var adapter : RecommendItemAdapter
@@ -53,6 +53,16 @@ class SearchingFragment : Fragment() {
                 editSearch.setText(beforeKeyword)
             }
 
+            val receiveBundle = arguments
+            if (receiveBundle != null) {
+                viewModel.isUserLogin.value= receiveBundle.getBoolean("isUser")
+                //Log.e(tagMsg, "유저인지$isUser")
+            } else Log.e(
+                "SearchingFragment",
+                "a bundle from mainHomeFragment is error" // todo("로그아웃 후 재로그인한 경우도 여기로 가는데 문제는 없음 ")
+            )
+
+
             keyword = editSearch.text.toString()
 
             isEnabled = false
@@ -66,6 +76,22 @@ class SearchingFragment : Fragment() {
             val toolbar = searchMainToolbar
             (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
             (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
+
+            binding.iconBack.setOnClickListener {
+                findNavController().navigateUp() // 뒤로 가기
+            }
+
+            binding.iconBookmark.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putBoolean("isUser", viewModel.isUserLogin.value!!)
+                findNavController().navigate(
+                    R.id.action_global_mainBookmarkFragment,
+                    bundle
+                )
+
+            }
+
+
 
             // editText 검색어 지우기
             binding.btnTextDelete.setOnClickListener {
@@ -126,6 +152,7 @@ class SearchingFragment : Fragment() {
                     // SearchFragment로 이동
                     // argument에 value를 전달
                     val bundle = Bundle()
+                    bundle.putBoolean("isUser",viewModel.isUserLogin.value!!)
                     bundle.putString("keyword", value)
                     arguments = bundle
                     findNavController().navigate(

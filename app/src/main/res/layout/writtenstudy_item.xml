@@ -23,7 +23,7 @@
             android:layout_marginHorizontal="@dimen/sixteen"
             android:layout_marginBottom="@dimen/sixteen"
             android:textColor="@color/O_50"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:fontFamily="@font/pretendard_medium"
             android:textFontWeight="600"
             tools:text="학과" />
@@ -46,7 +46,7 @@
             android:layout_marginHorizontal="@dimen/sixteen"
             android:layout_marginBottom="@dimen/fourteen"
             android:textColor="@color/sysblack1"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:fontFamily="@font/pretendard_medium"
             android:textFontWeight="600"
             tools:text="제목" />
@@ -59,7 +59,7 @@
             android:layout_marginHorizontal="@dimen/sixteen"
             android:layout_marginBottom="@dimen/sixteen"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:fontFamily="@font/pretendard_medium"
             android:textFontWeight="500"
             tools:text="서브제목" />
@@ -73,7 +73,7 @@
             android:layout_marginBottom="@dimen/twenty"
             android:text="@string/txt_RemainingSeats"
             android:textColor="@color/BG_70"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:fontFamily="@font/pretendard_medium"
             android:textFontWeight="500" />
 
@@ -100,6 +100,7 @@
                 android:background="#00000000"
                 android:enabled="@{isCloseStudy? false : true}"
                 android:text="@string/endStudy"
+                android:textSize="14dp"
                 android:textColor="@{isCloseStudy?@color/BG_60 :@color/O_50}"
                 android:fontFamily="@font/pretendard_medium"
                 android:textFontWeight="600"/>
@@ -113,6 +114,7 @@
                 android:background="#00000000"
                 android:text="@string/participant"
                 android:textColor="@color/BG_80"
+                android:textSize="14dp"
                 android:fontFamily="@font/pretendard_medium"
                 android:textFontWeight="600" />
         </LinearLayout>

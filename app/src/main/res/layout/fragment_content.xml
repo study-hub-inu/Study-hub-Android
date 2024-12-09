@@ -77,7 +77,7 @@
                         android:layout_marginRight="20dp"
                         android:text="@{viewModel.writingDate}"
                         android:textColor="@color/G_70"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         tools:text="2023.8.14 작성" />
 
                     <TextView
@@ -92,7 +92,7 @@
                         android:padding="8dp"
                         android:text="@{viewModel.majorData}"
                         android:textColor="@color/O_30"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         tools:text="컴퓨터 활용 능력" />
 
                     <TextView
@@ -106,7 +106,7 @@
                         android:maxLines="2"
                         android:text="@{viewModel.headData}"
                         android:textColor="@color/syswhite"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         android:textStyle="bold"
                         tools:text="컴활2급 스터디원 구해요!" />
 
@@ -136,7 +136,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:text="@string/txt_peopleNumber"
                                 android:textColor="@color/BG_60"
-                                android:textSize="12sp" />
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/imgTxt_peopleNumber"
@@ -144,7 +144,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/syswhite"
-                                android:textSize="16sp"
+                                android:textSize="16dp"
                                 android:textStyle="bold"
                                 app:drawableTopCompat="@drawable/resized_icon_person_24" />
                         </LinearLayout>
@@ -163,7 +163,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:text="@string/txt_fee"
                                 android:textColor="@color/BG_60"
-                                android:textSize="12sp" />
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/imgTxt_fee"
@@ -171,7 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/syswhite"
-                                android:textSize="16sp"
+                                android:textSize="16dp"
                                 android:textStyle="bold"
                                 app:drawableTopCompat="@drawable/resized_icon_coin_gray_24" />
 
@@ -191,7 +191,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:text="@string/txt_gender"
                                 android:textColor="@color/BG_60"
-                                android:textSize="12sp" />
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/imgTxt_gender"
@@ -200,7 +200,7 @@
                                 android:gravity="center"
                                 android:text="@{viewModel.gender}"
                                 android:textColor="@color/syswhite"
-                                android:textSize="16sp"
+                                android:textSize="16dp"
                                 android:textStyle="bold"
                                 app:drawableTopCompat="@drawable/resized_icon_gender_gray_24" />
 
@@ -225,7 +225,7 @@
                             android:text="@string/fsd_txt_introduce"
                             android:textColor="@color/BG_90"
                             android:textStyle="bold"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txt_detail"
@@ -237,7 +237,7 @@
                             android:layout_marginBottom="32dp"
                             android:text="@{viewModel.studyExplanation}"
                             android:textColor="@color/BG_80"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             tools:text="스터디에 대한 내용" />
 
                         <View
@@ -259,7 +259,7 @@
                             android:text="@string/fsd_txt_period"
                             android:textStyle="bold"
                             android:textColor="@color/BG_90"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txt_period"
@@ -272,7 +272,7 @@
                             android:gravity="center"
                             android:text="@{viewModel.period}"
                             android:textColor="@color/BG_80"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             app:drawableLeftCompat="@drawable/resized_icon_calender_m_bg_60_24"
                             tools:text="2023.8.10 ~ 2023.8.23" />
 
@@ -286,7 +286,7 @@
                             android:text="@string/txt_fee"
                             android:textStyle="bold"
                             android:textColor="@color/BG_90"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txt_won"
@@ -299,7 +299,7 @@
                             android:gravity="center"
                             android:text="@{viewModel.feeWithReason}"
                             android:textColor="@color/BG_80"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             app:drawableLeftCompat="@drawable/resized_icon_coin_gray_24" />
 
                         <TextView
@@ -312,7 +312,7 @@
                             android:text="@string/fsd_txt_meet"
                             android:textStyle="bold"
                             android:textColor="@color/BG_90"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txt_meet"
@@ -325,7 +325,7 @@
                             android:gravity="center"
                             android:text="@{viewModel.meetMethod}"
                             android:textColor="@color/BG_80"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             app:drawableLeftCompat="@drawable/resized_icon_mix_m_bg60_24"
                             tools:text="혼합" />
@@ -341,7 +341,7 @@
                             android:text="@string/fsd_txt_major1"
                             android:textStyle="bold"
                             android:textColor="@color/BG_90"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip"
@@ -352,6 +352,7 @@
                             android:layout_marginBottom="40dp"
                             app:chipBackgroundColor="@color/BG_30"
                             android:textColor="@color/BG_80"
+                            android:textSize="14dp"
                             android:text="@{viewModel.relativeMajor}" />
 
                         <View
@@ -373,7 +374,7 @@
                             android:text="@string/fsd_head_writer"
                             android:textColor="@color/sysblack1"
                             android:textStyle="bold"
-                            android:textSize="16sp" />
+                            android:textSize="16dp" />
 
                         <ImageView
                             android:id="@+id/icon_profile"
@@ -394,7 +395,7 @@
                             android:layout_toEndOf="@+id/icon_profile"
                             android:text="@{viewModel.writerMajor}"
                             android:textColor="@color/BG_80"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             tools:text="컴퓨터 공학부" />
 
                         <TextView
@@ -408,7 +409,7 @@
                             android:layout_toEndOf="@+id/icon_profile"
                             android:text="@{viewModel.writerName}"
                             android:textColor="@color/sysblack1"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             tools:text="닉네임" />
 
 
@@ -430,7 +431,7 @@
                             android:textStyle="bold"
                             android:text="@{@string/txt_allComment(viewModel.totalComment)}"
                             android:textColor="@color/sysblack1"
-                            android:textSize="16sp" />
+                            android:textSize="16dp" />
 
                         <ImageButton
                             android:id="@+id/btn_allComment"
@@ -472,7 +473,7 @@
                             android:enabled="false"
                             android:text="@string/enrollment"
                             android:textColor="@color/syswhite"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <EditText
                             android:id="@+id/edit_comment"
@@ -494,7 +495,7 @@
                             android:paddingVertical="@dimen/sixteen"
                             android:text="@={viewModel.studyComment}"
                             android:textColor="@color/sysblack1"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
 
                         <View
@@ -522,7 +523,7 @@
                             android:text="@string/fsd_head_recommend"
                             android:textColor="@color/sysblack1"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="16dp"
                             android:visibility="@{viewModel.emptyRecommendStudy?View.GONE:View.VISIBLE}" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -573,7 +574,7 @@
                 android:enabled="@{viewModel.isAppliedStudy?false:true}"
                 android:text="@{viewModel.isAppliedStudy?@string/alreadyAppliedUser:@string/fsd_btn_next}"
                 android:textColor="@color/syswhite"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:visibility="@{viewModel.isWriter?View.GONE:View.VISIBLE}" />
         </LinearLayout>
 

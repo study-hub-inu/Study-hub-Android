@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:text="@string/toolbar_findPassword"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -71,7 +71,7 @@
             android:layout_marginBottom="@dimen/fourteen"
             android:text="@string/seeEmailAuth"
             android:textColor="@color/sysblack2"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/sentedEmail"
             android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
             android:layout_marginBottom="@dimen/sixteen"
             android:text="@string/sentedEmail"
             android:textColor="@color/BG_90"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
         <TextView
             android:id="@+id/userEmail"
             android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
             android:layout_toEndOf="@+id/sentedEmail"
             android:layout_marginBottom="@dimen/sixteen"
             android:textColor="@color/BG_90"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:text="@{viewModel.userEmail}"
             tools:text="\@inu.ac.kr"/>
 
@@ -114,7 +114,7 @@
             android:text="@={viewModel.userAuth}"
             android:textColor="@color/sysblack1"
             android:textColorHint="@color/BG_70"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_resend"
@@ -127,7 +127,7 @@
             android:background="@drawable/btn_next_orange"
             android:text="@string/btn_resendauth"
             android:textColor="@color/syswhite"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
     </RelativeLayout>
 
 </layout>

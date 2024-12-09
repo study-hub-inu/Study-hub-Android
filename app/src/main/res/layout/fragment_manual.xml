@@ -33,7 +33,7 @@
                     android:gravity="center"
                     android:text="@string/txt_guideToolBar"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -101,7 +101,7 @@
                     android:layout_marginHorizontal="@dimen/twenty"
                     android:background="@drawable/solid_o_50_corner_6"
                     android:textColor="@color/syswhite"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:text="@string/btn_txt_writing" />
             </LinearLayout>
         </ScrollView>

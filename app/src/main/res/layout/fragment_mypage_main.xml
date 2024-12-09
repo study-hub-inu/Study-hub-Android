@@ -41,7 +41,7 @@
                         android:layout_alignParentStart="true"
                         android:text="@string/txt_mypage"
                         android:textColor="@color/syswhite"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
                     <ImageButton
                         android:id="@+id/icon_bookmark"
@@ -83,7 +83,7 @@
                     android:layout_toEndOf="@+id/icon_profile"
                     android:text="@{viewModel.isMajorData?viewModel.majorData:@string/txt_notLogin_major}"
                     android:textColor="@color/BG_80"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     tools:text="학과" />
 
@@ -96,7 +96,7 @@
                     android:layout_toEndOf="@+id/icon_profile"
                     android:text="@{viewModel.isNicknameData?viewModel.nicknameData:@string/txt_notLogin_name}"
                     android:textColor="@color/sysblack1"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     tools:text="닉네임" />
 
@@ -131,7 +131,7 @@
                     android:paddingBottom="20dp"
                     android:text="@{viewModel.writtenData}"
                     android:textColor="@color/sysblack1"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_userStudy"
@@ -148,7 +148,7 @@
                     android:paddingBottom="20dp"
                     android:text="@{viewModel.participantData}"
                     android:textColor="@color/sysblack1"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_userBookmark"
@@ -165,7 +165,7 @@
                     android:paddingBottom="20dp"
                     android:text="@{viewModel.bookmarkData}"
                     android:textColor="@color/sysblack1"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <View
@@ -186,7 +186,7 @@
                 android:text="@string/btn_waitPartner"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:visibility="gone" />
 
             <View
@@ -205,7 +205,7 @@
                 android:text="@string/btn_notice"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/btn_asking"
@@ -216,7 +216,7 @@
                 android:text="@string/btn_asking"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/btn_usingGuide"
@@ -227,7 +227,7 @@
                 android:text="@string/btn_usingGuide"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
 
             <Button
@@ -239,7 +239,7 @@
                 android:text="@string/btn_terms"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/btn_uerTerms"
@@ -250,7 +250,7 @@
                 android:text="@string/btn_uerTerms"
                 android:textAlignment="viewStart"
                 android:textColor="@color/BG_90"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
 
         </LinearLayout>

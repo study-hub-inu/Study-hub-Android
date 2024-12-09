@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
@@ -16,7 +17,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import kr.co.gamja.study_hub.R
 import kr.co.gamja.study_hub.databinding.FragmentMajorBinding
+import kr.co.gamja.study_hub.global.CustomDialog
 import kr.co.gamja.study_hub.global.ExtensionFragment.Companion.hideKeyboard
+import kr.co.gamja.study_hub.global.OnDialogClickListener
 
 class MajorFragment : Fragment() {
     private lateinit var binding: FragmentMajorBinding
@@ -56,11 +59,20 @@ class MajorFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
 
         binding.iconBack.setOnClickListener {
-            val navcontroller = findNavController()
-            navcontroller.navigateUp() // 뒤로 가기
+            isPressedBackBtn()
         }
 
+        val pressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                isPressedBackBtn()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, pressedCallBack)
+
+
         binding.btnNext.setOnClickListener {
+            binding.btnNext.isEnabled=false // 따닥이슈 방지
             // 회원가입 api보냄
             Log.d("회원가입 버튼 누름", "")
             viewModel.requestSignup(object : RegisterCallback {
@@ -71,6 +83,7 @@ class MajorFragment : Fragment() {
                     } else {
                         Log.e("회원가입 fail로 넘어감?", "")
                     }
+                    binding.btnNext.isEnabled = true // 따닥이슈
                 }
 
                 override fun onFail(eIsValid: Boolean, eStatus: String, eMessage: String) {
@@ -81,7 +94,10 @@ class MajorFragment : Fragment() {
                     } else {
                         Log.e("회원가입 fail로 넘어감?", "")
                     }
+                    binding.btnNext.isEnabled = true // 따닥이슈
                 }
+
+
             })
         }
         binding.txtPageNumber.text = getString(R.string.txt_pagenumber, 5)
@@ -89,7 +105,7 @@ class MajorFragment : Fragment() {
         selectMajor()
 
         binding.autoMajor.doOnTextChanged{ text,_,_,_ ->
-            if(text.toString().isEmpty()){
+            if(text.toString().isNullOrBlank()){
                viewModel.setEnableNextBtn(false) // 완전 다 지웠을 땐 다음 버튼 못누르게 하기
             }
 
@@ -179,4 +195,23 @@ class MajorFragment : Fragment() {
             return filter
         }
     }*/
+
+    fun isPressedBackBtn() {
+        val head: String =requireContext().resources.getString(R.string.q_alterSignUp)
+        val sub: String =requireContext().resources.getString(R.string.q_alterSignUpSub)
+        val no = requireContext().resources.getString(R.string.btn_no)
+        val yes = requireContext().resources.getString(R.string.btn_yes)
+        val dialog = CustomDialog(requireContext() ,head,sub, no, yes)
+        dialog.showDialog()
+        dialog.setOnClickListener(object : OnDialogClickListener {
+            override fun onclickResult() {
+
+                binding.autoMajor.text.clear()
+                viewModel.setEnableNextBtn(false)
+
+                findNavController().navigate(R.id.action_global_loginFragment)
+            }
+        })
+
+    }
 }

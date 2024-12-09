@@ -65,14 +65,14 @@
                         android:layout_height="wrap_content"
                         android:text="거절 사유"
                         android:textColor="@color/sysblack1"
-                        android:textSize="18sp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="해당 내용은 신청자에게 전송돼요"
                         android:textColor="@color/BG_70"
-                        android:textSize="12sp" />
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:gravity="center"
                     android:text="거절"
                     android:textColor="@{isChecked ? @color/O_50 : @color/O_20}"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +106,7 @@
                     android:gravity="start|center_vertical"
                     android:text="이 스터디의 목표와 맞지 않아요"
                     android:textColor="@color/BG_70"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <RadioButton
                     android:id="@+id/chb2"
@@ -117,7 +117,7 @@
                     android:gravity="start|center_vertical"
                     android:text="팀원 조건과 맞지 않아요 (학과, 성별 등)"
                     android:textColor="@color/BG_70"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <RadioButton
                     android:id="@+id/chb3"
@@ -128,7 +128,7 @@
                     android:gravity="start|center_vertical"
                     android:text="소개글이 짧아서 어떤 분인지 알 수 없어요"
                     android:textColor="@color/BG_70"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <RadioButton
                     android:id="@+id/chb4"
@@ -139,7 +139,7 @@
                     android:gravity="start|center_vertical"
                     android:text="기타 (직접 작성)"
                     android:textColor="@color/BG_70"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
             </RadioGroup>
         </LinearLayout>
     </FrameLayout>

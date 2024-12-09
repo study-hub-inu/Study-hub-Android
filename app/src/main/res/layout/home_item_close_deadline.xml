@@ -36,7 +36,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/sysblack1"
-            android:textSize="16sp"
+            android:textSize="16dp"
             tools:text="제목"
 
             />
@@ -51,7 +51,7 @@
             android:padding="8dp"
             android:text="@string/txt_people"
             android:textColor="@color/BG_90"
-            android:textSize="14sp"
+            android:textSize="14dp"
             app:drawableLeftCompat="@drawable/resized_icon_person_gray" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:padding="8dp"
             android:textColor="@color/O_50"
             android:text="@string/sentence_people"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_bookmark"

@@ -11,7 +11,9 @@ import kr.co.gamja.study_hub.data.model.SearchRecommendResponseDto
 import kr.co.gamja.study_hub.data.repository.RetrofitManager
 
 class RecommendViewModel : ViewModel() {
-    
+
+    var isUserLogin = MutableLiveData<Boolean>(true) // todo(mainhomefr이 떨어지더라도 메뉴얼fr에서 살아있는지 확인)
+
     /** recommned api를 사용해서 recommendList 생성 */
     private val _recommendList = MutableLiveData<List<String>>()
     val recommendList : LiveData<List<String>>

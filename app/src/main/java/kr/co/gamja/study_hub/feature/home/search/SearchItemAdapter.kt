@@ -88,6 +88,8 @@ class SearchItemAdapter(private val context : Context) :
             binding.nickname = item.userData.nickname
 
             binding.createDate = "${item.createdDate[0]}. ${item.createdDate[1]}. ${item.createdDate[2]}"
+            // todo 북마크 버튼 추가하기
+
         }
     }
 

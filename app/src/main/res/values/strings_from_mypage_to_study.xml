@@ -77,6 +77,7 @@
     <string name="q_cancelCreatingStudy">작성을 취소할까요?</string>
     <string name="q_sub_cancelCreatingStudy">취소할 시 내용이 저장되지 않아요</string>
     <string name="q_alterCreatingStudy">수정을 취소할까요?</string>
+
     <!--관련학과 선택하기-->
     <string name="txt_relativeMajor">관련학과</string>
     <string name="btn_button">버튼</string>

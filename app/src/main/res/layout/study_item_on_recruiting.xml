@@ -28,7 +28,7 @@
                 android:padding="8dp"
                 android:text="@string/txt_fs_modal_category"
                 android:textColor="@color/O_50"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_bookmark"
@@ -48,7 +48,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/sysblack1"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 tools:text="제목" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_title"
                 android:textColor="@color/BG_80"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 tools:text="시작날~종료날" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_alignParentEnd="true"
                 android:text="@string/txt_leftNumber"
                 android:textColor="@color/O_50"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
 
 
             <LinearLayout
@@ -94,7 +94,7 @@
                     android:gravity="center"
                     android:text="@string/txt_people_number"
                     android:textColor="@color/BG_90"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:drawableTopCompat="@drawable/resized_icon_person_24" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:gravity="center"
                     android:text="@string/txt_detailedFee"
                     android:textColor="@color/BG_90"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:drawableTopCompat="@drawable/resized_icon_coin_gray_24" />
 
                 <TextView
@@ -116,7 +116,7 @@
                     android:gravity="center"
                     android:text="@string/txt_gender"
                     android:textColor="@color/BG_90"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     app:drawableTopCompat="@drawable/resized_icon_gender_gray_24" />
             </LinearLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_toEndOf="@+id/icon_profile"
                 android:textColor="@color/BG_90"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 tools:text="닉네임님 " />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_toEndOf="@+id/icon_profile"
                 android:textColor="@color/BG_70"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 tools:text="생성날짜 " />
         </RelativeLayout>
 

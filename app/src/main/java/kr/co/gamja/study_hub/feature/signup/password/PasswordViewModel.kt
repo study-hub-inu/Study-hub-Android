@@ -1,5 +1,6 @@
 package kr.co.gamja.study_hub.feature.signup.password
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +20,10 @@ class PasswordViewModel : ViewModel() {
     fun setPassword(newPassword: String) {
         _password.value = newPassword
         _validPassword.value = newPassword.matches(PASSWORD.toRegex())
-        _validRePassword.value = (password.value.toString() == rePassword.value.toString())
+
+        Log.e("비번 viewModel", _validPassword.value.toString())
+        _validRePassword.value = password.value.toString() == rePassword.value.toString() && !rePassword.value.toString().isNullOrBlank() && validPassword.value ==true
+
     }
 
     // re패스워드

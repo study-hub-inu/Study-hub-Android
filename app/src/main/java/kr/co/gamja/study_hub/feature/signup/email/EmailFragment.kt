@@ -112,12 +112,19 @@ class EmailFragment : Fragment() {
 
             binding.btnAuth.isVisible = false
             binding.btnResend.isVisible = true
-            binding.txtAuthCode.isVisible = true
-            binding.editAuthCode.isVisible = true
+//            binding.txtAuthCode.isVisible = true
+//            binding.editAuthCode.isVisible = true
+            binding.editEmail.isEnabled = false // 인증 후 변경 불가
+            binding.editEmail.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.G_80
+                )
+            ) // 이메일 텍스트 색상 회색으로
         }
         // 인증번호 재전송
         binding.btnResend.setOnClickListener {
-            binding.errorEmail.isVisible=false
+            binding.errorEmail.isVisible = false
             sendEmail(true)
 
             hideKeyboardForResend()
@@ -188,9 +195,9 @@ class EmailFragment : Fragment() {
         viewModel.authNumber.observe(viewLifecycleOwner) {
             if (it != binding.editAuthCode.text.toString())
                 binding.editAuthCode.setText(it)
-            if(binding.editAuthCode.text.toString().length==8) {
+            if (binding.editAuthCode.text.toString().length == 8) {
                 viewModel.setEnableNextBtn(true) // 인증번호 길이에 따라 다음 버튼 활성화
-            }else{
+            } else {
                 viewModel.setEnableNextBtn(false)
             }
         }
@@ -199,19 +206,36 @@ class EmailFragment : Fragment() {
             else binding.editAuthCode.backgroundTintList = grayStateList
         }
     }
-    private fun sendEmail(customDialogNeed:Boolean){
 
-        binding.mainHomeProgressBar.isVisible=true
+    private fun sendEmail(customDialogNeed: Boolean) {
+
+        binding.mainHomeProgressBar.isVisible = true
+        binding.editEmail.isEnabled = false
+        binding.editEmail.setTextColor(requireContext().getColor(R.color.BG_70))
+        binding.btnResend.isEnabled = false
+        binding.btnResend.backgroundTintList =
+            ContextCompat.getColorStateList(requireContext(), R.color.BG_70) // 비활성시 색 변경
+
 
         viewModel.checkEmail(object : CallBackListener {
             override fun isSuccess(result: Boolean) {
                 if (result) {
-                    Log.e("이메일중복x","")
+                    binding.txtAuthCode.isVisible = true
+                    binding.editAuthCode.isVisible = true
+
+//                    binding.editEmail.isEnabled= false
+//                    binding.editEmail.setTextColor(requireContext().getColor(R.color.BG_70))
+                    Log.e("이메일중복x", "")
                     viewModel.emailSend(object : CallBackListener {
                         override fun isSuccess(result: Boolean) {
-                            binding.mainHomeProgressBar.isVisible=false
+                            binding.mainHomeProgressBar.isVisible = false
+                            binding.btnResend.isEnabled = true
+                            binding.btnResend.backgroundTintList = ContextCompat.getColorStateList(
+                                requireContext(),
+                                R.color.O_50
+                            ) // 활성시 색 변경
                             if (result) {
-                                Log.e("이메일인증코드 보냄","")
+                                Log.e("이메일인증코드 보냄", "")
                                 // 이메일 인증 보냈을 때
                                 binding.errorEmail.apply {
                                     text = getString(R.string.txt_sendedemail)
@@ -219,7 +243,7 @@ class EmailFragment : Fragment() {
                                     isVisible = true
                                 }
                                 binding.editEmail.backgroundTintList = grayStateList
-                                if(customDialogNeed){
+                                if (customDialogNeed) {
                                     CustomSnackBar.make(
                                         binding.layoutRelative,
                                         getString(R.string.txt_resendAlarm),
@@ -227,9 +251,9 @@ class EmailFragment : Fragment() {
                                     ).show()
                                 }
                             } else {
-                                Log.e("이메일인증코드 x","")
+                                Log.e("이메일인증코드 x", "")
                                 binding.errorEmail.apply {
-                                    text = "이메일 안보내짐, 코드확인"
+                                    text = "이메일 인증코드 발송 오류입니다. 재접속바랍니다"
                                     setTextColor(redColor)
                                     isVisible = true
                                 }
@@ -238,7 +262,7 @@ class EmailFragment : Fragment() {
                         }
                     })
                 } else {
-                    Log.e("이메일중복0","")
+                    Log.e("이메일중복0", "")
                     // 이메일 중복
                     binding.errorEmail.apply {
                         text = getString(R.string.txterror2_email)
@@ -246,6 +270,14 @@ class EmailFragment : Fragment() {
                         isVisible = true
                     }
                     binding.editEmail.backgroundTintList = redStateList
+
+                    binding.mainHomeProgressBar.isVisible = false
+                    binding.editEmail.isEnabled = true
+                    binding.btnResend.isEnabled = true
+                    binding.btnResend.backgroundTintList =
+                        ContextCompat.getColorStateList(requireContext(), R.color.O_50) // 활성시 색 변경
+                    binding.editEmail.setTextColor(requireContext().getColor(R.color.syswhite)) // 활성 텍스트 색으로 변경
+
                 }
             }
         })

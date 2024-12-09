@@ -30,7 +30,7 @@
                 android:background="@drawable/backgroundword_o_10"
                 android:padding="8dp"
                 android:textColor="@color/O_50"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 tools:text="학과" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -50,11 +50,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/sixteen"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:paddingTop="12dp"
             android:textColor="@color/sysblack1"
-            android:textSize="18sp"
-            tools:text="제목(최대 두줄)" />
+            android:textSize="18dp"
+            tools:text="제목(최대 한줄)" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:padding="8dp"
                 android:text="@string/txt_people"
                 android:textColor="@color/BG_90"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:drawableLeftCompat="@drawable/resized_icon_person_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -87,7 +87,7 @@
                 android:drawablePadding="4dp"
                 android:text="@string/txt_detailedFee"
                 android:textColor="@color/BG_90"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:drawableLeftCompat="@drawable/resized_icon_coin_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/txt_people"
@@ -107,7 +107,7 @@
             android:maxLines="1"
             android:padding="6dp"
             android:textColor="@color/BG_80"
-            android:textSize="12sp"
+            android:textSize="12dp"
             tools:text="잔여 %d자리" />
 
     </LinearLayout>

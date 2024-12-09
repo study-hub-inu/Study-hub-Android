@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -53,6 +54,9 @@ class UploadImageFragment : BottomSheetDialogFragment() {
 
     private val myInfoViewModel: MyInfoViewModel by activityViewModels()
 
+
+    private var isUploading = false // 사진 업로드 시 뒤로 가기 금지
+
 //    private lateinit var snackBarListener :SecondCallBackListener
     var snackBarListener :SecondCallBackListener?=null
     /*fun setOnSnackBarListener(listener: SecondCallBackListener){
@@ -71,6 +75,22 @@ class UploadImageFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        // 뒤로 가기 방지 설정
+        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+
+                if (isUploading) {
+                    // 업로드 중에는 뒤로 가기 차단 및 사용자 안내
+                    Toast.makeText(requireContext(), "사진 업로드중입니다. 잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    // 기본 뒤로 가기 동작 허용
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+
+            }
+        })
 
 
         cameraPermissionLauncher =
@@ -255,6 +275,10 @@ class UploadImageFragment : BottomSheetDialogFragment() {
 
     // 촬영한 사진 api연결
     private fun setPicture(path: String) {
+        binding.btnTakingPhoto.isEnabled=false
+        binding.bntPickPhoto.isEnabled=false
+        binding.btnClose.isEnabled=false
+        isUploading = true // 뒤로 가기 비활성화
 //        Log.e("UploadImageFragment바텀 싯" , "사진 촬영 이미지setPicture")
         val file = File(path)
         // 콘텐츠 타입 지정
@@ -266,6 +290,7 @@ class UploadImageFragment : BottomSheetDialogFragment() {
         viewModel.uploadImg(requestBody, object : CallBackListener {
 
             override fun isSuccess(result: Boolean) {
+                isUploading = false // 업로드 완료
 //                Log.e("UploadImageFragment바텀 싯" , "사진 촬영 이미지 업로딩 viewModel 결과$result")
                snackBarListener?.isSuccess(result) // snackBar 개인정보 페이지에 띄우기위한 리스너
                 myInfoViewModel.setProgressBar(false)

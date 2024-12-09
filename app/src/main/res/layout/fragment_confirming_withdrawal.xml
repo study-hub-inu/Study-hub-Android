@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:text="@string/txt_withdrawal"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -57,7 +57,7 @@
             android:layout_marginBottom="@dimen/sixteen"
             android:text="@string/hint_password"
             android:textColor="@color/sysblack2"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/edit_password"
@@ -78,7 +78,7 @@
             android:text="@={viewModel.currentPassword}"
             android:textColor="@color/sysblack1"
             android:textColorHint="@color/BG_70"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <ImageButton
             android:id="@+id/toggle_Password"
@@ -104,7 +104,7 @@
             android:enabled="@{viewModel.enableBtn?true:false}"
             android:text="@string/txt_withdrawal"
             android:textColor="@color/syswhite"
-            android:textSize="14sp"
+            android:textSize="14dp"
 
             />
     </RelativeLayout>

@@ -2,12 +2,15 @@ package kr.co.gamja.study_hub.feature.signup.password
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -15,11 +18,14 @@ import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import kr.co.gamja.study_hub.R
 import kr.co.gamja.study_hub.databinding.FragmentPasswordBinding
 import kr.co.gamja.study_hub.feature.signup.major.User
+import kr.co.gamja.study_hub.global.CustomDialog
 import kr.co.gamja.study_hub.global.ExtensionFragment.Companion.hideKeyboard
+import kr.co.gamja.study_hub.global.OnDialogClickListener
 import kotlin.properties.Delegates
 
 
@@ -32,7 +38,6 @@ class PasswordFragment : Fragment() {
     private lateinit var redStateList: ColorStateList
     private var greenColor by Delegates.notNull<Int>() // Green_10 : 인증코드 정상
     private lateinit var greenStateList: ColorStateList
-
 
 
     override fun onCreateView(
@@ -78,9 +83,15 @@ class PasswordFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
 
         binding.iconBack.setOnClickListener {
-            val navcontroller = findNavController()
-            navcontroller.navigateUp() // 뒤로 가기
+          isPressedBackBtn()
         }
+        val pressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                isPressedBackBtn()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, pressedCallBack)
 
         binding.txtPageNumber.text = getString(R.string.txt_pagenumber, 3)
 
@@ -130,17 +141,57 @@ class PasswordFragment : Fragment() {
 
 
     private fun setupPasswordText() {
-        binding.editPassword.doOnTextChanged { text, _, _, _ ->
-            if (text.toString() != viewModel.password.value) {
-                viewModel.setPassword(text.toString())
+        binding.editPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
-        }
-        viewModel.password.observe(viewLifecycleOwner) {
-            if (it != binding.editPassword.text.toString())
-                binding.editPassword.setText(it)
-        }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0 != null) {
+                    val filterText = p0.toString().replace("\\s{1,}".toRegex(), "")
+                    val watcher = this
+                    if (filterText != p0.toString()) {
+                        // 공백 입력 시: 공백 제거 후 텍스트 설정
+                        binding.editPassword.apply {
+                            removeTextChangedListener(watcher) // 무한 루프 방지
+                            setText(filterText) // 공백 제거된 텍스트 설정
+                            setSelection(filterText.length) // 커서 끝으로 이동
+                            addTextChangedListener(watcher) // TextWatcher 다시 추가
+                        }
+                        viewModel.setPassword(filterText) // ViewModel 동기화
+                    } else if (filterText != viewModel.password.value) {
+                        // 공백 입력이 없을 시: ViewModel만 업데이트
+                        viewModel.setPassword(filterText)
+                    }
+
+
+                }
+            }
+        })
+
+//        binding.editPassword.doOnTextChanged { text, _, _, _ ->
+//            val filterText = text.toString().replace("\\s{1,}".toRegex(), "")
+//            if (filterText != viewModel.password.value) {
+//                Log.e("패스워드 에러", filterText)
+//                viewModel.setPassword(filterText)
+//                binding.editPassword.setSelection(filterText.length)
+//            }
+//        }
+
+
+//        viewModel.password.observe(viewLifecycleOwner) {
+//            if (it != binding.editPassword.text.toString())
+//                binding.editPassword.setText(it)
+//        }
+
+
         viewModel.validPassword.observe(viewLifecycleOwner) {
             if (it) {
+
                 binding.editPassword.backgroundTintList = greenStateList
                 binding.errorPassword.apply {
                     text = getString(R.string.txterror_passwordOk)
@@ -148,6 +199,7 @@ class PasswordFragment : Fragment() {
                     isVisible = true
                 }
             } else {
+
                 binding.editPassword.backgroundTintList = redStateList
                 binding.errorPassword.apply {
                     text = getString(R.string.txterror_password)
@@ -164,7 +216,7 @@ class PasswordFragment : Fragment() {
                 viewModel.setRePassword(text.toString())
             }
             if (binding.editPassword.backgroundTintList == greenStateList) {
-                Log.d("실행", "")
+
                 binding.editPassword.backgroundTintList = grayStateList
                 binding.errorPassword.isVisible = false
             }
@@ -192,6 +244,23 @@ class PasswordFragment : Fragment() {
                 viewModel.setEnableNextBtn(false)
             }
         }
+    }
+
+    fun isPressedBackBtn() {
+            val head: String =requireContext().resources.getString(R.string.q_alterSignUp)
+        val sub: String =requireContext().resources.getString(R.string.q_alterSignUpSub)
+            val no = requireContext().resources.getString(R.string.btn_no)
+            val yes = requireContext().resources.getString(R.string.btn_yes)
+            val dialog = CustomDialog(requireContext() ,head,sub, no, yes)
+            dialog.showDialog()
+            dialog.setOnClickListener(object : OnDialogClickListener {
+                override fun onclickResult() {
+                    viewModel.setPassword("") // 초기화
+                    viewModel.setRePassword("")
+                    findNavController().navigate(R.id.action_global_loginFragment)
+                }
+            })
+
     }
 
 }

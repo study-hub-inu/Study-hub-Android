@@ -17,7 +17,7 @@
             android:layout_marginHorizontal="@dimen/sixteen"
             android:layout_marginBottom="@dimen/sixteen"
             android:textColor="@color/O_50"
-            android:textSize="12sp"
+            android:textSize="12dp"
             tools:text="학과" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -40,7 +40,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="@color/sysblack1"
-            android:textSize="16sp"
+            android:textSize="16dp"
             tools:text="제목" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="내용" />
 
 
@@ -72,6 +72,7 @@
             android:layout_marginStart="@dimen/sixteen"
             android:background="#00000000"
             android:text="@string/txt_goChatRoom"
+            android:textSize="14dp"
             android:textColor="@color/BG_80" />
 
 

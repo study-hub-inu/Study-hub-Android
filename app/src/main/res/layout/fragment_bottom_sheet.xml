@@ -21,7 +21,7 @@
             android:background="#00000000"
             android:text="@string/btn_verb_delete"
             android:textColor="@color/R_50"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <View
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:background="#00000000"
             android:text="@string/btn_verb_modify"
             android:textColor="@color/sysblack1"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_close"
@@ -47,6 +47,6 @@
             android:background="@drawable/bg_30_corner_6"
             android:text="@string/btn_close"
             android:textColor="@color/sysblack1"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
     </LinearLayout>
 </layout>

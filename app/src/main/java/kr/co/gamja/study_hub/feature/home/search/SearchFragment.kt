@@ -138,9 +138,12 @@ class SearchFragment : Fragment() {
         }
 
         binding.iconBookmark.setOnClickListener {
+
+            val bundle = Bundle()
+            bundle.putBoolean("isUser", viewModel.isUserLogin.value!!)
             findNavController().navigate(
                 R.id.action_global_mainBookmarkFragment,
-                null
+                bundle
             )
         }
         // SearchingFragment로 이동

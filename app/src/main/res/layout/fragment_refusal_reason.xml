@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="거절 사유"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textColor="@color/syswhite"/>
 
                 <View
@@ -69,7 +69,7 @@
             android:layout_height="85dp"
             android:paddingStart="20dp"
             android:text="해당 참여자를 거절하게 된 이유를 적어주세요"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/sysblack1"
             android:gravity="center_vertical" />
 
@@ -88,8 +88,9 @@
                 android:paddingHorizontal="14dp"
                 android:paddingVertical="20dp"
                 android:hint="ex) 욕설 등의 부적절한 말을 사용했습니다. 저희 스터디와 맞지 않습니다."
-                android:textSize="14sp"
-                android:textColor="@color/BG_70"/>
+                android:textSize="14dp"
+                android:textColorHint="@color/BG_70"
+                android:textColor="@color/sysblack1"/>
 
         </LinearLayout>
 
@@ -105,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@{textCount}"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/BG_90"
                 tools:text="0"/>
 
@@ -113,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="/200"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 android:textColor="@color/BG_70"/>
 
         </LinearLayout>
@@ -129,7 +130,7 @@
             android:layout_gravity="top|start"
             android:paddingHorizontal="20dp"
             android:text="- 해당 내용은 신청자에게 전달돼요"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textColor="@color/BG_60"/>
 
         <Button
@@ -140,7 +141,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
             android:text="완료"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/syswhite"/>
 
     </LinearLayout>

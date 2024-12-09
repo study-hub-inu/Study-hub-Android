@@ -42,7 +42,7 @@
                     android:gravity="center"
                     android:text="@string/word_registration"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -56,7 +56,7 @@
             android:layout_marginHorizontal="@dimen/twenty"
             android:layout_marginTop="@dimen/login_top_margin"
             android:textColor="@color/G_60"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             tools:text="1/4" />
 
@@ -69,7 +69,7 @@
             android:layout_marginBottom="@dimen/login_top_margin"
             android:text="@string/txt_email"
             android:textColor="@color/syswhite"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_marginHorizontal="@dimen/twenty"
             android:text="@string/txt_word_email"
             android:textColor="@color/syswhite"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -97,7 +97,7 @@
             android:maxLength="30"
             android:textColor="@color/syswhite"
             android:textColorHint="@color/G_80"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -112,7 +112,7 @@
             android:enabled="false"
             android:text="@string/txt_word_auth"
             android:textColor="@color/syswhite"
-            android:textSize="16sp"
+            android:textSize="16dp"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -127,7 +127,7 @@
             android:enabled="false"
             android:text="@string/btn_resendauth"
             android:textColor="@color/syswhite"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:visibility="invisible" />
 
         <TextView
@@ -137,7 +137,7 @@
             android:layout_below="@id/edit_email"
             android:layout_marginHorizontal="@dimen/twenty"
             android:textColor="@color/R_50"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="에러" />
 
         <TextView
@@ -149,7 +149,7 @@
             android:layout_marginTop="@dimen/error_marginTop"
             android:text="@string/txt_authcode"
             android:textColor="@color/syswhite"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:visibility="invisible"
             tools:visibility="visible" />
 
@@ -167,7 +167,7 @@
             android:maxLength="8"
             android:textColor="@color/syswhite"
             android:textColorHint="@color/G_80"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:visibility="invisible"
             tools:visibility="visible" />
 
@@ -178,7 +178,7 @@
             android:layout_below="@+id/edit_authCode"
             android:layout_marginHorizontal="@dimen/twenty"
             android:textColor="@color/R_50"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="에러" />
 
 
@@ -188,7 +188,7 @@
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="@dimen/twenty"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_marginBottom="@dimen/twenty_four"
             android:text="@string/btn_nextpage"
             android:enabled="@{viewModel.nextBtn}"

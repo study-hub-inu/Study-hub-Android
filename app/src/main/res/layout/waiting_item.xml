@@ -23,7 +23,7 @@
             android:layout_marginTop="@dimen/eighteen"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="컴퓨터 공학부" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_marginStart="@dimen/fourteen"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/sysblack1"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="닉네임" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_marginBottom="@dimen/eighteen"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/BG_70"
-            android:textSize="12sp"
+            android:textSize="12dp"
             tools:text="생성날짜 " />
 
         <TextView
@@ -60,7 +60,7 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="@dimen/twenty"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             tools:text="안녕하세요!! 스터디 열심히 참여하겠습니다. 잘 부탁드립니다~" />
 
         <View
@@ -86,7 +86,7 @@
                 android:background="#00000000"
                 android:text="@string/refusal"
                 android:textColor="@color/BG_80"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
 
             <View
                 android:id="@+id/view_leftOfRefusal"
@@ -103,7 +103,7 @@
                 android:background="#00000000"
                 android:text="@string/acceptance"
                 android:textColor="@color/GN_10"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

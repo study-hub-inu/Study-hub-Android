@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:background="@drawable/solid_syswhite"
             android:textColor="@color/sysblack1"
-            android:textSize="18sp"
+            android:textSize="18dp"
             tools:text="@{model.infoDay}" />
     </LinearLayout>
 

@@ -47,7 +47,7 @@
                     android:gravity="center"
                     android:text="@string/txt_relativeMajor"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
 
                     />
@@ -63,7 +63,7 @@
                     android:minHeight="0dp"
                     android:text="@string/btn_complete"
                     android:textColor="@{viewModel.isRelativeMajor?@color/O_50:@color/O_Deactivation}"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -85,7 +85,7 @@
             android:scrollbars="vertical"
             android:textColor="@color/sysblack1"
             android:textColorHint="@color/BG_70"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <ImageButton
             android:id="@+id/btn_search"
@@ -121,7 +121,7 @@
             android:layout_marginTop="@dimen/sixteen"
             android:text="@string/txt_sub_relativeMajor"
             android:textColor="@color/BG_60"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:visibility="@{viewModel.isRelativeMajor? View.GONE : View.VISIBLE}" />
 
         <com.google.android.material.chip.Chip
@@ -135,7 +135,7 @@
             android:focusable="true"
             android:text="@{viewModel.postRelativeMajor}"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:visibility="@{viewModel.isRelativeMajor?  View.VISIBLE :  View.GONE}"
             app:chipIconVisible="false"
             app:closeIconTint="@color/BG_70"

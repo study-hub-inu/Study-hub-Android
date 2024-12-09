@@ -25,9 +25,11 @@
     <string name="txterror_passwordOk">사용 가능한 비밀번호예요.</string>
     <string name="txterror_empty"> </string>
     <string name="btnBack_login">\'뒤로가기\'를 한 번 더 누르면 종료돼요.</string>
+
     <!--    회원가입-->
     <string name="txt_pagenumber">%1$d\/5</string>
-
+    <string name="q_alterSignUp">회원가입을 취소할까요?</string>
+    <string name="q_alterSignUpSub">로그인 화면으로 돌아갑니다.</string>
     <string name="txt_email">이메일을 입력해주세요</string>
     <string name="hint_univaddress">\@inu.ac.kr</string>
     <string name="txterror2_email">이미 가입된이메일 주소입니다.</string>

@@ -17,6 +17,8 @@ import kr.co.gamja.study_hub.data.repository.RetrofitManager
 
 class WaitingViewModel : ViewModel() {
 
+
+
     //대기 목록
     private val _participantWaitingList = MutableLiveData<List<RegisterListContent>>()
     val participantWaitingList: LiveData<List<RegisterListContent>>
@@ -37,9 +39,12 @@ class WaitingViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val result = response.body() ?: throw NullPointerException("Result is NULL")
                     _participantWaitingList.postValue(result.applyUserData.content)
+
+
                 } else {
                     /** fetch data 실패 로직 */
                 }
+
             } catch (e: Exception) {
                 throw IllegalArgumentException(e)
             }
@@ -77,6 +82,7 @@ class WaitingViewModel : ViewModel() {
                     }
                 }
                 fetchData(studyId)
+
             } catch (e: Exception) {
                 throw IllegalArgumentException(e.message)
             }

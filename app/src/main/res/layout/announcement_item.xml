@@ -37,7 +37,7 @@
                 android:layout_marginBottom="14dp"
                 android:text="@{title}"
                 android:textColor="@color/sysblack1"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 tools:text="새로운 서비스가 제공될 예정이에요" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{date}"
                 android:textColor="@color/BG_70"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 tools:text="2023. 9. 28" />
 
         </LinearLayout>

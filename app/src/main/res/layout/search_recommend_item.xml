@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text=""
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/sysblack1"
         tools:text="디자인학부"/>
 

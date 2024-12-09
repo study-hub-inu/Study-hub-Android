@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/thirty_two"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/BG_90"
-            android:textSize="12sp"
+            android:textSize="12dp"
             tools:text="닉네임" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_marginBottom="12dp"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/BG_70"
-            android:textSize="10sp"
+            android:textSize="10dp"
             tools:text="생성날짜 " />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_below="@+id/createdDate"
             android:layout_toEndOf="@+id/img_profile"
             android:textColor="@color/BG_80"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:layout_marginEnd="@dimen/twenty"
             tools:text="참여완료" />
 

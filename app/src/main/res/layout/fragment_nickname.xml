@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:text="@string/word_registration"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -60,7 +60,7 @@
                 android:layout_marginHorizontal="@dimen/twenty"
                 android:layout_marginTop="@dimen/login_top_margin"
                 android:textColor="@color/G_60"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 tools:text="3/4" />
 
@@ -72,7 +72,7 @@
                 android:layout_marginHorizontal="@dimen/twenty"
                 android:text="@string/txt_register_page3_header"
                 android:textColor="@color/syswhite"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -84,7 +84,7 @@
                 android:layout_marginBottom="@dimen/login_top_margin"
                 android:text="@string/txt_register_page3_sub"
                 android:textColor="@color/G_40"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/txt_nickName"
@@ -94,7 +94,7 @@
                 android:layout_marginHorizontal="@dimen/twenty"
                 android:text="@string/txt_word_nickname"
                 android:textColor="@color/syswhite"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -112,7 +112,7 @@
                 android:singleLine="true"
                 android:textColor="@color/syswhite"
                 android:textColorHint="@color/G_80"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_NicknameOverlapCheck"
@@ -126,7 +126,7 @@
                 android:background="@drawable/btn_next_orange"
                 android:text="@string/txt_overlapCheck"
                 android:textColor="@color/syswhite"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/error_nickName"
@@ -136,7 +136,7 @@
                 android:layout_marginHorizontal="@dimen/twenty"
                 android:text="@{viewModel.nicknameError!=null?(viewModel.nicknameError?@string/texterror_nickname:@string/txtok_nickname):@string/txterror_empty}"
                 android:textColor="@{viewModel.nicknameError!=null?(viewModel.nicknameError?@color/R_50:@color/GN_10):@color/G_100}"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:visibility="@{viewModel.nicknameError!=null?(viewModel.nicknameError?View.VISIBLE:View.VISIBLE):View.INVISIBLE}"
                 tools:text="에러" />
 
@@ -148,7 +148,7 @@
                 android:layout_alignEnd="@+id/error_nickName"
                 android:text="@{@string/txt_limitOfNickNameLength(viewModel.nicknameLength)}"
                 android:textColor="@color/syswhite"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 tools:text="%d/10" />
 
             <TextView
@@ -160,7 +160,7 @@
                 android:layout_marginTop="@dimen/error_marginTop"
                 android:text="@string/txt_gender"
                 android:textColor="@color/syswhite"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -179,7 +179,7 @@
                     android:background="@drawable/btn_gender_g_100_stroke_g_80"
                     android:text="@string/btn_female"
                     android:textColor="@color/O_20"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_male"
@@ -189,7 +189,7 @@
                     android:background="@drawable/btn_gender_g_100_stroke_g_80"
                     android:text="@string/btn_male"
                     android:textColor="@color/O_20"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -205,7 +205,7 @@
                 android:textColor="@{viewModel.nextBtn?@color/syswhite:@color/W_Deactivation}"
 
                 android:text="@string/btn_nextpage"
-                android:textSize="16sp" />
+                android:textSize="16dp" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

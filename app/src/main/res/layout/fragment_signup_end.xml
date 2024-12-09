@@ -28,7 +28,7 @@
             android:gravity="center"
             android:text="@string/txt1_joincomplete1"
             android:textColor="@color/syswhite"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <ImageView
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:text="@string/txt1_joincomplete2"
             android:textColor="@color/syswhite"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:text="@string/txt1_joincomplete3"
             android:textColor="@color/syswhite"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
 
@@ -77,7 +77,7 @@
             android:layout_marginBottom="8dp"
             android:text="@string/txt2_joincomplete"
             android:textColor="@color/G_40"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_start"
@@ -89,6 +89,6 @@
             android:text="@string/btn_start"
             android:textColor="@color/syswhite"
 
-            android:textSize="16sp" />
+            android:textSize="16dp" />
     </RelativeLayout>
 </layout>

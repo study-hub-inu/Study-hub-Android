@@ -28,7 +28,7 @@ class WrittenStudyViewModel(studyHubApi: StudyHubApi) : ViewModel() {
     private val _reloadTrigger = MutableStateFlow(false)
 
     // 리스트 개수
-    private val _listSize = MutableLiveData<Int>(0)
+    private val _listSize = MutableLiveData<Int>(1)
     val listSize: LiveData<Int> get() = _listSize
 
     private val count = MutableStateFlow<Int>(0)

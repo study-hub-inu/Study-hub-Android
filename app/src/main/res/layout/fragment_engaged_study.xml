@@ -44,7 +44,7 @@
                     android:gravity="center"
                     android:text="@string/engagedStudy"
                     android:textColor="@color/syswhite"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -61,7 +61,7 @@
             android:layout_marginStart="@dimen/twenty"
             tools:text="전체"
             android:textColor="@color/BG_80"
-            android:textSize="16sp"/>
+            android:textSize="16dp"/>
 
         <TextView
             android:id="@+id/txt_item_count"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.listSize.toString()}"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:fontFamily="@font/pretendard_medium"
             android:layout_marginStart="6dp"
             android:layout_toEndOf="@+id/txt_all"
@@ -89,7 +89,7 @@
             android:background="#00000000"
             android:text="@string/btn_allDelete"
             android:textColor="@color/BG_70"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:visibility="invisible"/>
 
         <ImageView
@@ -109,7 +109,7 @@
             android:layout_marginTop="@dimen/sixteen"
             android:text="@string/binEngagedStudy"
             android:textColor="@color/BG_70"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:visibility="@{viewModel.isList?View.INVISIBLE:View.VISIBLE}" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_marginTop="@dimen/sixteen"
             android:text="@string/sub_binBookmark"
             android:textColor="@color/BG_60"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:visibility="@{viewModel.isList?View.INVISIBLE:View.VISIBLE}" />
 
         <ProgressBar

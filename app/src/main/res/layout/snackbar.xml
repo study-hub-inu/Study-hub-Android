@@ -31,7 +31,7 @@
                 android:layout_toEndOf="@+id/icon_cheak"
                 android:layout_marginStart="6dp"
                 android:textColor="@color/G_10"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 tools:text="텍스트" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

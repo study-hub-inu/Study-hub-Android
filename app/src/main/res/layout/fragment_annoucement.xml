@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="공지 사항"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textColor="@color/syswhite"/>
 
                 <View
