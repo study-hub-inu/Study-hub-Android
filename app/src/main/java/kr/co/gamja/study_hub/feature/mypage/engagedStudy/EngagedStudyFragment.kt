@@ -91,7 +91,8 @@ class EngagedStudyFragment : Fragment() {
                         dialog.setOnClickListener(object : OnDialogClickListener {
                             override fun onclickResult() {
                                 // TODO("삭제 누를 시 통신")
-
+//                                adapter.refresh() // 리사이클러뷰 refresh
+//                                viewModel.updateEngagedListSize() // 신청 내역 리스트 개수 업데이트
                             }
                         })
                     }

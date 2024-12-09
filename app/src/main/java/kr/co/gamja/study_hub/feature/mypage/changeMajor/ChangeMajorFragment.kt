@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import kr.co.gamja.study_hub.R
+import kr.co.gamja.study_hub.data.repository.CallBackListener
 import kr.co.gamja.study_hub.databinding.FragmentChangeMajorBinding
 
 class ChangeMajorFragment : Fragment() {
@@ -59,10 +60,18 @@ class ChangeMajorFragment : Fragment() {
             }
         })
         binding.btnComplete.setOnClickListener{
-            viewModel.changeMajor() // 학과 수정 api연결
-            val navcontroller = findNavController()
-            navcontroller.navigateUp() // 뒤로 가기
-            // TODO(" 기존학과랑 같을 경우 스낵바 -> api 수정되면하기", api성공여부 받고 뒤로가기 처리)
+            viewModel.changeMajor(object : CallBackListener{
+                override fun isSuccess(result: Boolean) {
+                    if(result){
+
+                        // 학과 수정 api연결
+                        val navcontroller = findNavController()
+                        navcontroller.navigateUp() // 뒤로 가기
+                        // TODO(" 기존학과랑 같을 경우 스낵바 -> api 수정되면하기", api성공여부 받고 뒤로가기 처리)
+
+                    }
+                }
+            })
         }
     }
 

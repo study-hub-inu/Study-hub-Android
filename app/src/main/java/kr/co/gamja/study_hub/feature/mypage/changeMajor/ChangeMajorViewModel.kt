@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kr.co.gamja.study_hub.data.model.ChangeMajorRequest
 import kr.co.gamja.study_hub.data.repository.AuthRetrofitManager
+import kr.co.gamja.study_hub.data.repository.CallBackIntegerListener
 import kr.co.gamja.study_hub.data.repository.CallBackListener
 
 class ChangeMajorViewModel : ViewModel() {
@@ -31,13 +32,15 @@ class ChangeMajorViewModel : ViewModel() {
         Log.d(tag, "학과 선택값" + major.value.toString())
     }
 
-    fun changeMajor(){
+    fun changeMajor(params: CallBackListener){
         val req = ChangeMajorRequest(major = _major.value.toString())
         viewModelScope.launch {
             val response=AuthRetrofitManager.api.putNewMajor(req)
             if (response.isSuccessful){
                 Log.d(tag, " 학과 수정 성공 ${response.code()}")
+                params.isSuccess(true)
             }else{
+                params.isSuccess(false)
                 Log.e(tag, "학과 수정 api 에러 ${response.code()} ")
             }
         }

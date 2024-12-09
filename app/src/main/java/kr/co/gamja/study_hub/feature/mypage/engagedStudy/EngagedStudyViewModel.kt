@@ -58,8 +58,8 @@ class EngagedStudyViewModel(studyHubApi: StudyHubApi) : ViewModel() {
             try {
                 if (response.isSuccessful) {
                     val result = response.body()
-                    _listSize.value = result?.totalCount
-                    Log.d(" 사용자가 참여한 스터디 개수", _listSize.toString())
+                    _listSize.value = result?.participateStudyData?.numberOfElements
+                    Log.d(" 사용자가 참여한 스터디 개수", _listSize.value.toString() +" result" +result?.totalCount.toString())
                 }
             } catch (e: Exception) {
                 Log.e(tag, "사용자가 참여한 스터디api에서 개수 조회 실패 code" + response.code().toString())

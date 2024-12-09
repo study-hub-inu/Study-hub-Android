@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kr.co.gamja.study_hub.data.model.UsersErrorResponse
 import kr.co.gamja.study_hub.data.model.UsersResponse
 import kr.co.gamja.study_hub.data.repository.AuthRetrofitManager
 import kr.co.gamja.study_hub.data.repository.CallBackListener
 import kr.co.gamja.study_hub.global.Functions
+import java.util.Objects
 
 class MyInfoViewModel : ViewModel() {
     private val tag = this.javaClass.simpleName
@@ -106,11 +109,18 @@ class MyInfoViewModel : ViewModel() {
                     _imgData.value = result.imageUrl
                     _isImgData.value = true
                     _writtenData.value=result.postCount.toString()
-                    _bookmarkData.value=result.applyCount.toString() // 북마크수가 아니라 신청내역수임(변수명 변경해야함)
-                    _participantData.value=result.participateCount.toString()
+//                    _bookmarkData.value=result.applyCount.toString() // 북마크수가 아니라 신청내역수임(변수명 변경해야함)
+//                    _participantData.value=result.participateCount.toString()
+
+                    val updateListSizeJob = async {updateListSize()} // 신청 내역 업데이트
+                    val updateEngagedListSizeJob = async { updateEngagedListSize() }
+                    awaitAll(updateListSizeJob, updateEngagedListSizeJob)
+
+                    params.isSuccess(true)
+                    Log.d("회원조회 글 수","작성한 글result.postCount "+result.postCount.toString() +"  result.applyCount"+result.applyCount.toString()+"   result.participateCount." + result.participateCount.toString() )
                     onClickListener.myInfoCallbackResult(true)
                     isUserLogin.value=true
-                    params.isSuccess(true)
+
                 } else {
                     params.isSuccess(false) // 회원조회가 안된 경우
                     Log.e(tag, "회원조회 실패")
@@ -146,6 +156,39 @@ class MyInfoViewModel : ViewModel() {
             }
         }
     }
+
+    fun updateEngagedListSize() {
+        viewModelScope.launch {
+            val response = AuthRetrofitManager.api.participatingMyStudy(0, 10)
+            try {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    _participantData.value = result?.participateStudyData?.numberOfElements.toString()
+                    Log.d(" 사용자가 참여한 스터디 개수_participantData.value", _participantData.value.toString() )
+                }
+            } catch (e: Exception) {
+                Log.e(tag, "사용자가 참여한 스터디api에서 개수 조회 실패 code" + response.code().toString())
+            }
+        }
+    }
+
+    fun updateListSize() {
+        viewModelScope.launch {
+            val response = AuthRetrofitManager.api.getUserApplyHistory(0, 10)
+            try {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    _bookmarkData.value = result?.requestStudyData?.numberOfElements.toString()
+                    Log.d("신청스터디개수", _bookmarkData.value.toString())
+                }
+            } catch (e: Exception) {
+                Log.e(tag, "내가 신청한 스터디api에서 개수 조회 실패 code" + response.code().toString())
+            }
+        }
+    }
+
+
+
 
 }
 
